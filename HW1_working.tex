@@ -41,10 +41,13 @@ Pr[r_i=r_j | i \neq j] & =1-\frac{N-1}{N}\frac{N-2}{N}\dots\frac{N-n+1}{N}=1-\pr
 n=1.2\sqrt{N} \Rightarrow \frac{n^2}{2N}=0.72 \Rightarrow \eqref{eq_bp} \geq 1-e^{-0.72}=0.53\geq \frac{1}{2}
 \end{equation}
 
+\pagebreak
 \section*{Problem 3}
-\afterpage{\blankpage}
+%\afterpage{\blankpage}
 {\bf 1} \\
-
+When the entire transaction except for signature scripts was signed, the signature can prove the ownership of the public key to redeem UTXO and prove that the transaction id and output index of the previous transaction, the previous output's pubkey script, the pubkey script  created to let the recipient spend this transaction's output, and the output amount is not tampered. Therefore the attacker cannot steal funds. \\
+{\bf 2} \\
+However, if only the entire output of the transaction is signed and the transaction id and output index of the previous transaction are not signed, the attacker can steal funds. Suppose there are two transactions (tx0 and tx1)which pay to Alice, then Alice has two UTXOs. Then when Alice pays to Bob, she create a new transaction (tx2). She create the input of tx2 which includes the previous transaction id (tx0) and previous transaction's output index, and create the ouput amount and pubkey script, but she just signed the entire output using her private key. Then Bob can be the attacker and tampers tx2's previous transaction id to tx1's id and the previous transaction's output index to tx1's output index. The node will still consider this tampered transaction as valid since Alice didn't sign this part of data, and the check signature will still show it is valid even after this part of data has been tampered. In that way, Bob can steal funds from Alice. \\
 
 
 
