@@ -1,0 +1,51 @@
+\documentclass[latterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+\begin{document}
+
+\title{HW1}
+\author{Tianbo Qiu (tq2137)}
+\date{\today}
+\maketitle
+
+\section*{Problem 1}
+{\bf\normalsize 1} \\
+Preimage resistant: Given the output y of n bits, it will take $O(2^n)$ time to find the preimages x such that $y=h(x)$.\\
+Collision resistant: Given an output size of n bits, it will take $O(2^{\frac{n}{2}})$ time to find two distinct values $x$ and $x^{\prime}$ such that $h(x)=h(x^{\prime})$. \\
+Second preimage resistant: Given an output of n bits and a message x, it will take $O(2^n)$ time to find another message $x^{\prime}$ such that $h(x)=h(x^{\prime})$.\\
+{\bf 2} \\
+False, the hash value of the message is encrypted with a user's private key.\\
+{\bf 3} \\
+RSA and Elliptic Curve can be used for digital signature. \\
+{\bf 4} \\
+For any point G on the elliptic curve, a new point $Q=kG$ for a scalar k forms a cyclic subgroup. Given G and Q, it is computationally infeasible to find k. Suppose $k=2^n$, it will take $O(2^n)$ time to find k.
+
+\section*{Problem 2}
+Given $n=1.2\sqrt{N}$.
+\begin{equation}
+\label{eq_bp}
+\begin{split}
+Pr[r_i=r_j | i \neq j] & =1-\frac{N-1}{N}\frac{N-2}{N}\dots\frac{N-n+1}{N}=1-\prod_{i=1}^{n-1} (1-\frac{i}{N}) \\
+& \geq 1-\prod_{i=1}^{n-1}e^{-\frac{i}{N}}=1-e^{-\frac{1}{N}\sum_{i=1}^{n-1}i} \geq 1-e^{-\frac{n^2}{2N}}
+\end{split}
+\end{equation}
+
+\begin{equation}
+n=1.2\sqrt{N} \Rightarrow \frac{n^2}{2N}=0.72 \Rightarrow \eqref{eq_bp} \geq 1-e^{-0.72}=0.53\geq \frac{1}{2}
+\end{equation}
+
+\section*{Problem 3}
+\afterpage{\blankpage}
+{\bf 1} \\
+
+
+
+
+\end{document}
